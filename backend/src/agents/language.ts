@@ -12,6 +12,7 @@ const LANGUAGE_NATIVE_NAMES: Record<string, string> = {
   en: 'English',
   ja: '日本語 (Japanese)',
   ko: '한국어 (Korean)',
+  es: 'Español (Spanish)',
 }
 
 export function buildLanguageDirective(lang?: string | null): string {
