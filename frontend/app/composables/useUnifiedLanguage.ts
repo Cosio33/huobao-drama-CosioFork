@@ -16,9 +16,10 @@ let pending: { resolve: (ok: boolean) => void } | null = null
 /** 弹确认框；resolve(true) = 用户确认切换 */
 function confirmDialog(lang: UiLocale): Promise<boolean> {
   return new Promise((resolve) => {
-    const langNameKeys = { zh: 'langNameZh', en: 'langNameEn', ja: 'langNameJa', ko: 'langNameKo' }
-    const nameKey = `settings.general.${langNameKeys[lang] || 'langNameZh'}`
-    const title = i18n.global.t('components.langSwitch.title', { lang: i18n.global.t(nameKey) })
+    // Nombres nativos de idioma: los nombres de idioma no se traducen, así que se mantienen
+    // aquí en forma nativa (evita depender de claves langName* en cada locale)
+    const langNativeNames: Record<string, string> = { zh: '中文', en: 'English', ja: '日本語', ko: '한국어', es: 'Español' }
+    const title = i18n.global.t('components.langSwitch.title', { lang: langNativeNames[lang] || lang })
     const message = i18n.global.t('components.langSwitch.message')
 
     const open = ref(true)
